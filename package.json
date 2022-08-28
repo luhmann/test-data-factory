@@ -1,0 +1,27 @@
+{
+  "name": "test-data-factory",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luhmann/test-data-factory.git"
+  },
+  "keywords": [],
+  "author": "Jan Florian Dietrich <jfd@daenen4.de> (http://www.daenen4.de/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luhmann/test-data-factory/issues"
+  },
+  "homepage": "https://github.com/luhmann/test-data-factory#readme",
+  "dependencies": {
+    "lodash.mergewith": "^4.6.2"
+  },
+  "devDependencies": {
+    "fast-check": "^3.1.2",
+    "vitest": "^0.22.1"
+  }
+}

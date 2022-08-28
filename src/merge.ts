@@ -1,0 +1,10 @@
+import mergeWith from "lodash.mergewith";
+
+export const merge = mergeWith;
+export const mergeCustomizer = (objValue: any, srcVal: any) => {
+  if (Array.isArray(srcVal)) {
+    return srcVal;
+  } /* else if (srcVal === undefined) {
+    object[key] = srcVal;
+  }*/
+};
