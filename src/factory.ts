@@ -8,7 +8,7 @@ const define = <T, I = any>(generator: GeneratorFn<T, I>) => ({
   rewindSequence() {
     this.id.value = SEQUENCE_START_VALUE;
   },
-  build(params?: DeepPartial<T>, options?: BuildOptions<T, I>) {
+  build(params?: DeepPartial<T>, options?: BuildOptions<T, I>): T {
     return merge(
       {},
       generator({
@@ -35,7 +35,6 @@ const define = <T, I = any>(generator: GeneratorFn<T, I>) => ({
   params(overrides: DeepPartial<T>) {
     const clone = Object.assign({}, this);
     clone.build = (params?: DeepPartial<T>, options?: BuildOptions<T, I>) =>
-      // TODO: might be dry but makes params inside the generator function slightly less consistent, consider
       this.build(
         merge({}, overrides, params ?? {}, mergeCustomizer) as DeepPartial<T>,
         options

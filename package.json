@@ -21,6 +21,7 @@
     "lodash.mergewith": "^4.6.2"
   },
   "devDependencies": {
+    "@types/lodash.mergewith": "^4.6.7",
     "fast-check": "^3.1.2",
     "typescript": "^4.8.2",
     "vitest": "^0.22.1"
