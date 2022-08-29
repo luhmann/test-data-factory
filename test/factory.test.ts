@@ -58,7 +58,6 @@ describe("Example based", () => {
     `);
   });
 
-  // TODO: extra keys do not seem to bother the type check
   test("should build nested data", () => {
     const pirateFactory = Factory.define<Pirate>(() => ({
       firstName: "Jack",

@@ -8,7 +8,7 @@ const define = <T, I = any>(generator: GeneratorFn<T, I>) => ({
   rewindSequence() {
     this.id.value = SEQUENCE_START_VALUE;
   },
-  build(params?: DeepPartial<T>, options?: BuildOptions<T, I>) {
+  build(params?: DeepPartial<T>, options?: BuildOptions<T, I>): T {
     return merge(
       {},
       generator({
