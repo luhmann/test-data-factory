@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "@jest/globals";
 import * as fc from "fast-check";
 import { Factory } from "../src/factory";
 
@@ -182,12 +182,14 @@ describe("Example based", () => {
 
     const noBounty = pirateFactory.build();
     expect(noBounty.bounty).toEqual(0);
+    //@ts-ignore
     expect(noBounty.isWanted).toEqual(undefined);
 
     const withBounty = pirateFactory.build(undefined, {
       transient: { isWanted: true },
     });
     expect(withBounty.bounty).toEqual(50_000);
+    //@ts-ignore
     expect(withBounty.isWanted).toEqual(undefined);
   });
 
