@@ -1,23 +1,23 @@
-import { merge, mergeCustomizer } from "./merge";
-import { GeneratorFn, DeepPartial, BuildOptions } from "./types";
+import { merge } from "./merge";
+import { GeneratorFn, DeepPartial, BuildOptions, DataObject } from "./types";
 
 const SEQUENCE_START_VALUE = 1;
 
-const define = <T, I = any>(generator: GeneratorFn<T, I>) => ({
+const define = <T extends DataObject, I = any>(
+  generator: GeneratorFn<T, I>
+) => ({
   id: { value: SEQUENCE_START_VALUE },
   rewindSequence() {
     this.id.value = SEQUENCE_START_VALUE;
   },
   build(params?: DeepPartial<T>, options?: BuildOptions<T, I>): T {
     return merge(
-      {},
       generator({
         params: params ?? ({} as DeepPartial<T>),
         sequence: this.id.value++,
         transientParams: options?.transient ?? {},
       }),
-      params,
-      mergeCustomizer
+      params ?? ({} as DeepPartial<T>)
     );
   },
   buildList(
@@ -36,10 +36,7 @@ const define = <T, I = any>(generator: GeneratorFn<T, I>) => ({
     const clone = Object.assign({}, this);
     clone.build = (params?: DeepPartial<T>, options?: BuildOptions<T, I>) =>
       // TODO: might be dry but makes params inside the generator function slightly less consistent, consider
-      this.build(
-        merge({}, overrides, params ?? {}, mergeCustomizer) as DeepPartial<T>,
-        options
-      );
+      this.build(merge(overrides, params ?? {}) as DeepPartial<T>, options);
     return clone;
   },
 });
